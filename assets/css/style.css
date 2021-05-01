@@ -4,16 +4,15 @@ header {
     color: white;
 }
 
-button {
-    border-radius: 10%;
+.btn {
+    
     background-color: deepskyblue;
     color: white;
-}
-
-#city-search {
-    align-content: left;
+    margin-top: 5%;
+    width: 100%;
 }
 
 #current-day {
-    align-content: right;
+    border: 1px solid black;
+    padding-left: 2%;
 }
