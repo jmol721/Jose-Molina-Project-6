@@ -14,5 +14,19 @@ header {
 
 #current-day {
     border: 1px solid black;
-    padding-left: 2%;
+}
+
+.favorable-uvi {
+    background-color: green;
+    color: white;
+}
+
+.moderate-uvi {
+    background-color: orange;
+    color: white;
+}
+
+.severe-uvi {
+    background-color: red;
+    color: white;
 }

@@ -21,12 +21,29 @@
                     <input type="text" class="form-control" id="city-input" placeholder="City">
                 </div>
                 <div>
-                    <button class="btn btn-lg" type="button">Search</button>
+                    <button class="btn btn-lg" id="search-button" type="button">Search</button>
                 </div>
             </div>
             <!-- div for current day -->
             <div class="col-sm-8" id="current-day">
-                <p>Hello</p>
+                <div style="display: flex;">
+                    <div style="padding-top: 1%;">
+                        <h3 id="cityTitle">City</h3>
+                    </div>
+                    <div>
+                        <img id="weatherIcon" src="">
+                    </div>
+                </div>
+                <div>
+                    <div id="temp"></div>
+                    <div id="wind"></div>
+                    <div id="humidity"></div>
+                    <div style="display: flex;">
+                        <div style="padding-right: 1%;" id="uv"></div>
+                        <div id="uv-icon"></div>
+                    </div>
+                    
+                </div>
             </div>
             <!-- div for city history -->
             <div class="col-sm-4" id="city-history">
