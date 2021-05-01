@@ -1,0 +1,19 @@
+header {
+    text-align: center;
+    background-image: linear-gradient(to right, lightskyblue, mediumblue, navy);
+    color: white;
+}
+
+button {
+    border-radius: 10%;
+    background-color: deepskyblue;
+    color: white;
+}
+
+#city-search {
+    align-content: left;
+}
+
+#current-day {
+    align-content: right;
+}
