@@ -72,10 +72,11 @@ var fiveDayWeather = function(data) {
 
         // display day
         var list = document.getElementById("5-day-forecast");
-        // var parentDiv = document.createElement('div');
-        // parentDiv.setAttribute('class', 'col');
         var dayDivElement = document.createElement('div');
         dayDivElement.setAttribute('class', 'card day-card col');
+
+
+        
         dayDivElement.textContent = JSON.stringify(dayObject);
 
         // parentDiv.appendChild(dayDivElement);
