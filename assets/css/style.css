@@ -30,3 +30,7 @@ header {
     background-color: red;
     color: white;
 }
+
+.day-card {
+    margin-right: 1%;
+}

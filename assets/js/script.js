@@ -11,10 +11,10 @@ var getWeather = function() {
             return response.json();
         })
         .then(function(data) {
-            console.log(data);
+            // console.log(data);
             
             var coords = data.coord;
-            fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.lon}&exclude=hourly,daily&appid=${apiKey}`)
+            fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.lon}&exclude=hourly,minutely,alerts&appid=${apiKey}&units=imperial`)
             .then(function(response) {
                 return response.json();
             }).then(function(uvData) {
@@ -46,10 +46,41 @@ var getWeather = function() {
                 }
                 
                 document.getElementById("uv-icon").setAttribute('class', "badge "+ uviClass);
+
+                fiveDayWeather(uvData);
             });
 
             
         });
+}
+
+var fiveDayWeather = function(data) {
+    console.log('daily weather: ', data);
+    console.log('five day weather: ', data.daily);
+    var days = data.daily;
+    for(var i = 1; i < 6; i++) {
+        
+        var daysDate = new Date(days[i].dt * 1000).toLocaleDateString('en-US');
+        var dayObject = {
+            date: daysDate,
+            icon: days[i].weather[0].icon,
+            temp: days[i].temp.day,
+            wind: days[i].wind_speed,
+            humidity: days[i].humidity
+        };
+        console.log(dayObject);
+
+        // display day
+        var list = document.getElementById("5-day-forecast");
+        // var parentDiv = document.createElement('div');
+        // parentDiv.setAttribute('class', 'col');
+        var dayDivElement = document.createElement('div');
+        dayDivElement.setAttribute('class', 'card day-card col');
+        dayDivElement.textContent = JSON.stringify(dayObject);
+
+        // parentDiv.appendChild(dayDivElement);
+        list.appendChild(dayDivElement);
+    }
 }
 
 var onSearch = function() {
@@ -57,6 +88,10 @@ var onSearch = function() {
     console.log('city ', currentCity);
 
     getWeather();
+    // fiveDayWeather();
 }
 
 inputButton.onclick = onSearch;
+
+currentCity = 'Austin';
+getWeather();
