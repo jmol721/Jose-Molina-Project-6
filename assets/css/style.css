@@ -33,4 +33,31 @@ header {
 
 .day-card {
     margin-right: 1%;
+    background-color: #33475a;
+    color: white;
+    height: 12rem;
+}
+
+.current-day-div {
+    display: flex;
+}
+
+.current-day {
+    padding-top: 1%;
+}
+
+.uv-div {
+    display: flex;
+}
+
+.uv {
+    padding-right: 1%;
+}
+
+.date {
+    font-size: 20px;
+}
+
+.card-div {
+    padding-top: 5%;
 }

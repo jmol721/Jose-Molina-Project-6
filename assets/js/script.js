@@ -75,9 +75,32 @@ var fiveDayWeather = function(data) {
         var dayDivElement = document.createElement('div');
         dayDivElement.setAttribute('class', 'card day-card col');
 
+        var dateDiv = document.createElement('div');
+        dateDiv.setAttribute('class', 'date');
+        var iconDiv = document.createElement('div');
+        var iconImg = document.createElement('img');
+        var tempDiv = document.createElement('div');
+        tempDiv.setAttribute('class', 'card-div');
+        var windDiv = document.createElement('div');
+        windDiv.setAttribute('class', 'card-div');
+        var humidityDiv = document.createElement('div');
+        humidityDiv.setAttribute('class', 'card-div');
 
-        
-        dayDivElement.textContent = JSON.stringify(dayObject);
+        // divs for Day Div info
+        dateDiv.textContent = dayObject.date;
+        iconImg.src = "http://openweathermap.org/img/w/" + dayObject.icon + ".png";
+        // iconDiv.textContent = JSON.stringify(dayObject.icon);
+        tempDiv.textContent = "Temp: " + Math.round(JSON.stringify(dayObject.temp)) + "°F";
+        windDiv.textContent = "Wind: " + JSON.stringify(dayObject.wind) + " MPH";
+        humidityDiv.textContent = "Humidity: " + JSON.stringify(dayObject.humidity) + "%";
+
+        // append divs to day div
+        dayDivElement.appendChild(dateDiv);
+        dayDivElement.appendChild(iconDiv);
+        iconDiv.appendChild(iconImg);
+        dayDivElement.appendChild(tempDiv);
+        dayDivElement.appendChild(windDiv);
+        dayDivElement.appendChild(humidityDiv);
 
         // parentDiv.appendChild(dayDivElement);
         list.appendChild(dayDivElement);
