@@ -119,6 +119,14 @@ var onSearch = function() {
     addCityToHistory();
 }
 
+var previousSearch = function(event) {
+    console.log('previous serach: ', event);
+    console.log('event target', event.target.textContent);
+    currentCity = event.target.textContent;
+    getWeather();
+}
+
+
 var addCityToHistory = function() {
     var historyList = [];
     var valueString = localStorage.getItem('name');
@@ -132,7 +140,10 @@ var addCityToHistory = function() {
     var cityListLi = document.createElement('li');
     cityListLi.textContent = currentCity;
     cityListLi.setAttribute('class', 'history-list-li');
-
+    cityListLi.setAttribute('id', currentCity);
+    cityListLi.onclick = function(event) {
+        previousSearch(event);
+    }
     cityUl.appendChild(cityListLi);
 }
 
@@ -146,6 +157,9 @@ var callCityHistory = function() {
             var cityListLi = document.createElement('li');
             cityListLi.textContent = cityList[i];
             cityListLi.setAttribute('class', 'history-list-li');
+            cityListLi.onclick = function(event) {
+                previousSearch(event);
+            }
 
             cityUl.appendChild(cityListLi);
         }
