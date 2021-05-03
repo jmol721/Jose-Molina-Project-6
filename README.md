@@ -6,6 +6,8 @@ Repo Url:
 https://github.com/jmol721/Jose-Molina-Project-6
 
 Deployed App Url:
-
+https://jmol721.github.io/Jose-Molina-Project-6/
 
 Screenshots:
+
+![](./images/Weather-dashboard.jpg)
