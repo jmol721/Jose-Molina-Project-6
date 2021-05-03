@@ -61,3 +61,17 @@ header {
 .card-div {
     padding-top: 5%;
 }
+
+.history-list-div {
+    border-top: 5px solid #b7b7b7;
+    margin-top: 5%;
+}
+
+.history-list-li {
+    margin-top: 2%;
+    background-color: #b7b7b7;
+    list-style: none;
+    text-align: center;
+    border-radius: 5px;
+    padding: 1%;
+}

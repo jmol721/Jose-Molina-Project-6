@@ -11,7 +11,6 @@ var getWeather = function() {
             return response.json();
         })
         .then(function(data) {
-            // console.log(data);
             
             var coords = data.coord;
             fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.lon}&exclude=hourly,minutely,alerts&appid=${apiKey}&units=imperial`)
@@ -58,6 +57,13 @@ var fiveDayWeather = function(data) {
     console.log('daily weather: ', data);
     console.log('five day weather: ', data.daily);
     var days = data.daily;
+
+    var list = document.getElementById("5-day-forecast");
+        if (list.hasChildNodes()) {
+            const list = document.getElementById('5-day-forecast');
+            list.innerHTML = '';
+        }
+
     for(var i = 1; i < 6; i++) {
         
         var daysDate = new Date(days[i].dt * 1000).toLocaleDateString('en-US');
@@ -71,7 +77,6 @@ var fiveDayWeather = function(data) {
         console.log(dayObject);
 
         // display day
-        var list = document.getElementById("5-day-forecast");
         var dayDivElement = document.createElement('div');
         dayDivElement.setAttribute('class', 'card day-card col');
 
@@ -89,10 +94,18 @@ var fiveDayWeather = function(data) {
         // divs for Day Div info
         dateDiv.textContent = dayObject.date;
         iconImg.src = "http://openweathermap.org/img/w/" + dayObject.icon + ".png";
-        // iconDiv.textContent = JSON.stringify(dayObject.icon);
         tempDiv.textContent = "Temp: " + Math.round(JSON.stringify(dayObject.temp)) + "°F";
         windDiv.textContent = "Wind: " + JSON.stringify(dayObject.wind) + " MPH";
         humidityDiv.textContent = "Humidity: " + JSON.stringify(dayObject.humidity) + "%";
+
+        if (list.hasChildNodes())
+        //unappend div from day vid
+        // dayDivElement.removeChild(dateDiv);
+        // dayDivElement.removeChild(iconDiv);
+        // iconDiv.removeChild(iconImg);
+        // dayDivElement.removeChild(tempDiv);
+        // dayDivElement.removeChild(windDiv);
+        // dayDivElement.removeChild(humidityDiv);
 
         // append divs to day div
         dayDivElement.appendChild(dateDiv);
@@ -112,10 +125,42 @@ var onSearch = function() {
     console.log('city ', currentCity);
 
     getWeather();
-    // fiveDayWeather();
+    addCityToHistory();
 }
 
-inputButton.onclick = onSearch;
+var addCityToHistory = function() {
+    var historyList = [];
+    var valueString = localStorage.getItem('name');
+    if (valueString !== null) {
+        historyList = JSON.parse(localStorage.getItem('name'));
+    }
+    historyList.push(currentCity);
+    localStorage.setItem('name', JSON.stringify(historyList));
 
-currentCity = 'Austin';
-getWeather();
+    var cityUl = document.getElementById('history-list');
+    var cityListLi = document.createElement('li');
+    cityListLi.textContent = currentCity;
+    cityListLi.setAttribute('class', 'history-list-li');
+
+    cityUl.appendChild(cityListLi);
+}
+
+var callCityHistory = function() {
+    var cityList = JSON.parse(localStorage.getItem('name'));
+    var cityUl = document.getElementById('history-list');
+    console.log('new log', cityList);
+
+    if (cityList !== null) {
+        for (var i = 0; i <cityList.length; i++) {
+            var cityListLi = document.createElement('li');
+            cityListLi.textContent = cityList[i];
+            cityListLi.setAttribute('class', 'history-list-li');
+
+            cityUl.appendChild(cityListLi);
+        }
+    }
+    }
+
+
+inputButton.onclick = onSearch;
+callCityHistory();
