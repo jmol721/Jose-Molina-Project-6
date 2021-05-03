@@ -98,15 +98,6 @@ var fiveDayWeather = function(data) {
         windDiv.textContent = "Wind: " + JSON.stringify(dayObject.wind) + " MPH";
         humidityDiv.textContent = "Humidity: " + JSON.stringify(dayObject.humidity) + "%";
 
-        if (list.hasChildNodes())
-        //unappend div from day vid
-        // dayDivElement.removeChild(dateDiv);
-        // dayDivElement.removeChild(iconDiv);
-        // iconDiv.removeChild(iconImg);
-        // dayDivElement.removeChild(tempDiv);
-        // dayDivElement.removeChild(windDiv);
-        // dayDivElement.removeChild(humidityDiv);
-
         // append divs to day div
         dayDivElement.appendChild(dateDiv);
         dayDivElement.appendChild(iconDiv);
